@@ -45,5 +45,4 @@ public class MembershipController {
     }
 
     // TODO: add suspension method.
-    // TODO: add documentation for a cron job with a configurable schedule that unrevokes vcs whose suspension period has expired.
 }

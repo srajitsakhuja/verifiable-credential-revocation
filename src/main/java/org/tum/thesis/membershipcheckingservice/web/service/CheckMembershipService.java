@@ -47,14 +47,15 @@ public class CheckMembershipService {
             throw new IllegalArgumentException("Malformed cascading filter provided");
         }
 
-        return cascadingFilter.isRevoked(new VerifiableCredential<>(vcId));
+        return !cascadingFilter.isRevoked(new VerifiableCredential<>(vcId));
     }
 
-    public static void main(String[] args) throws IOException, ParseException {
-        CheckMembershipService checkMembershipService = new CheckMembershipService(new IpfsClient());
-        String id = "urn:uuid:beb90af1-4f07-47ff-b887-e13954151e02";
-        System.out.println(checkMembershipService.check("k51qzi5uqu5dhs4mze0mjps995qd7rtd8hfi3e1qd27689y0aik76lp2zctxej", id));
-    }
+    // uncomment for testing the functioning of this service without having to spin up the server.
+//    public static void main(String[] args) throws IOException, ParseException {
+//        CheckMembershipService checkMembershipService = new CheckMembershipService(new IpfsClient());
+//        String id = "urn:uuid:beb90af1-4f07-47ff-b887-e13954151e02";
+//        System.out.println(checkMembershipService.check("k51qzi5uqu5dhs4mze0mjps995qd7rtd8hfi3e1qd27689y0aik76lp2zctxej", id));
+//    }
 
     private String findRevocationListIpfsHash(String ipnsAddress) throws IOException, ParseException {
         URL url = new URL(String.format(IPNS_BASE_URL, ipnsAddress));
@@ -79,7 +80,6 @@ public class CheckMembershipService {
         String revocationListAddress = (String) json.get(IPFS_ADDRESS_JSON_KEY);
 
         return revocationListAddress;
-//        System.out.println(revocationListAddress);
 //        return extractHashFromIpfsAddress(revocationListAddress);
     }
 
