@@ -1,0 +1,16 @@
+{
+  "name": "ipfs-to-ipns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "w3name": "^1.0.8",
+    "uint8arrays": "^3.0.0"
+  }
+}
